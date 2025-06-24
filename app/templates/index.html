@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>FinLitGPT</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+            <script src="../scripts/script.js"></script>
+        </head>
+
+        <body>
+            <h3>FinLitGPT: Your Finance Assistant</h3>
+
+            <input type="text" id="question" placeholder="Ask me a financial question...">
+            <button onclick="askQuestion()">Ask</button>
+
+            <div id="response"></div>
+        </body>
+
+    </html>

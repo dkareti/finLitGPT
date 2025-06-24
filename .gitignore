@@ -1,0 +1,30 @@
+# Ignore Python cache and bytecode files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore environment variables and secrets
+.env
+
+# Ignore virtual environments
+venv/
+.env/
+env/
+
+# Ignore FAISS index files and data outputs
+*.bin
+*.index
+*.npy
+*.pkl
+
+# Ignore OS or editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Ignore frontend build files if you later add React/Vite/etc.
+node_modules/
+dist/
+build/
