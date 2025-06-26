@@ -1,9 +1,11 @@
 from sentence_transformers import SentenceTransformer
-# from transformers import pipeline #Hugging Face Transformers
 import faiss #a vector similarity search library
 import json
 import numpy as np
 
+'''
+Libraries needed to use open ai's API
+'''
 import os
 import openai
 from dotenv import load_dotenv
