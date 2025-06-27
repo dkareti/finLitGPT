@@ -2,7 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import nltk
+# models used for sentence parsing
 nltk.download('punkt')
+nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize
 
 #data retrived from Investopedia
@@ -48,3 +50,17 @@ def chunk_text(text, max_words = 100):
 
     return chunks
     
+all_chunks = []
+
+for url in urls:
+    raw_text = extract_text_func(url)
+    chunks = chunk_text(raw_text)
+
+    for chunk in chunks:
+        all_chunks.append({"content": chunk})
+
+#save as a json
+with open("app/data/finance_articles.json", "w") as f:
+    json.dump(all_chunks, f, indent=2)
+
+print(f"Saved {len(all_chunks)} chunks to finance_articles.json!")
