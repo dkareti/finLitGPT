@@ -8,6 +8,9 @@ nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize
 
 #data retrived from Investopedia
+'''
+Any future sources require additional extract func's that correspond to that site's content
+'''
 urls = [
     "https://www.investopedia.com/terms/r/rothira.asp",
     "https://www.investopedia.com/terms/1/401kplan.asp",

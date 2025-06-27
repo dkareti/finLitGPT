@@ -14,4 +14,10 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+model = SentenceTransformer('all-MiniLM-L6-v2')
+index = faiss.read_index("vector_store/faiss_index.bin")
+
+with open('data/finance_articles.json') as f:
+    docs = json.load(f)
+
 
