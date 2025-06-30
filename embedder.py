@@ -19,11 +19,15 @@ texts = [entry["content"] for entry in data]
 # this creates a numerical vector that captures the meaning of each sentence
 model = SentenceTransformer("all-MiniLM-L6-v2")
 embeddings = model.encode(texts, convert_to_numpy=True)
+#Every sentence from the .json file is created into a vector (a numpy array)
 
 # Create the FAISS index
-dimension = embeddings.shape[1]
+#####
+#The faiss.IndexFlat2 uses Euclidean distance to measure how similar vectors are
+
+dimension = embeddings.shape[1] #this stores the number of values in each vector
 index = faiss.IndexFlatL2(dimension)
-index.add(np.array(embeddings))
+index.add(embeddings)
 
 # Make sure directory exists
 os.makedirs("app/vector_store", exist_ok=True)
