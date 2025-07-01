@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="text"] {
+    border: 2px solid beige;
+    padding: 40px;
+    border-radius: 6px;
+    outline: wheat;
+}
+
+input[type="text"]:focus{
+    border-color: azure;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
