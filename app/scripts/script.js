@@ -2,7 +2,7 @@ async function askQuestion() {
     const question = document.getElementById("question").value;
     const responseBox = document.getElementById("response");
 
-    responseBox.innerHTML = "Loading ...";
+    responseBox.innerHTML = "Thinking ...";
 
     const res = await fetch("/ask", {
         method: "POST",

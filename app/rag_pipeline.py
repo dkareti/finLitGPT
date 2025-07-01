@@ -14,21 +14,30 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
-index = faiss.read_index("vector_store/faiss_index.bin")
+_model = None
+_index = None
+_docs = None
 
-with open('data/finance_articles.json') as f:
-    docs = json.load(f)
+def load_resources():
+    global _model, _index, _docs
+    if _model is None:
+        _model = SentenceTransformer('all-MiniLM-L6-v2')
+    if _index is None:
+        _index = faiss.read_index("app/vector_store/faiss_index.bin")
+    if _docs is None:
+        with open("app/data/finance_articles.json") as f:
+            _docs = json.load(f)
 
 def get_answer(query):
     #embedd query
-    query_vec = model.encode([query])
+    load_resources()
+    query_vec = _model.encode([query])
 
     #search the faiss index
     #the lower the distance, the more similar the match, 
     #the distance is the euclidean distance between the query vector and the top 3 similar vectors
-    distance, indices = index.search(np.array(query_vec), k=3)
-    context = "\n\n".join([docs[i]['content'] for i in indices[0]])
+    distance, indices = _index.search(np.array(query_vec), k=3)
+    context = "\n\n".join([_docs[i]['content'] for i in indices[0]])
 
     #send to llm
     prompt = f"Answer the question based on the context below. \n\nContext:\n{context}\n\nQuestion: {query}\nAnswer:"
