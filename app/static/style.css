@@ -16,3 +16,17 @@ input[type="text"]:focus{
     border-color: azure;
     box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
 }
+
+button{
+    width: 100%;
+    padding: 12px;
+    background-color: lightblue;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: aqua;
+
+}
