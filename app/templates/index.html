@@ -3,16 +3,20 @@
         <head>
             <title>FinLitGPT</title>
             <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-            <script src="../scripts/script.js"></script>
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
         </head>
 
         <body>
-            <h3>FinLitGPT: Your Finance Assistant</h3>
-            <div class="input-row">
-                <input type="text" id="question" placeholder="Ask me a financial question ...">
-                <button onclick="askQuestion()">Ask</button>
+            <div class="container">
+                <h3>FinLitGPT: Your Finance Assistant</h3>
+
+                <div class="input-box">
+                    <input type="text" id="question" placeholder="Ask me a financial question ...">
+                    <button onclick="askQuestion()">Ask</button>
+                </div>
+
+                <div id="response"></div>
             </div>
-            <div id="response"></div>
         </body>
 
     </html>

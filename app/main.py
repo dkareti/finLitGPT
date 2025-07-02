@@ -10,12 +10,13 @@ def index():
 @app.route('/ask', methods=['POST'])
 def ask():
     
-    data = request.json
-    query = data.get('question')
+    data = request.get_json()
+    query = data.get('question') if data else None
     print("Received query:", query)
 
     if not query:
         return jsonify({'error': 'No question provided'}), 400
+    
     answer = get_answer(query)
     return jsonify({'answer': answer})
 

@@ -8,6 +8,7 @@ Libraries needed to use open ai's API
 '''
 import os
 import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -42,7 +43,9 @@ def get_answer(query):
     #send to llm
     prompt = f"Answer the question based on the context below. \n\nContext:\n{context}\n\nQuestion: {query}\nAnswer:"
 
-    response = openai.ChatCompletion.create(
+    client = OpenAI()
+
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "user", "content": prompt}
@@ -50,7 +53,7 @@ def get_answer(query):
         temperature=0.7
     )
 
-    return response['choices'][0]['message']['content']
-
+    answer = response.choices[0].message.content
+    return answer
 
 
